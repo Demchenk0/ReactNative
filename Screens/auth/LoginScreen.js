@@ -42,17 +42,6 @@ export default function LoginScreen({navigation}) {
 					<KeyboardAvoidingView behavior={Platform.OS === 'ios' && 'padding'}>
 						<View style={styles.form}>
 							<Text style={styles.text}>Войти</Text>
-							{/* <View>
-								<TextInput
-									style={styles.input}
-									onFocus={() => setIsShowKeyboard(true)}
-									placeholder="Логин"
-									value={state.login}
-									onChangeText={value =>
-										setState(prevState => ({ ...prevState, login: value }))
-									}
-								/>
-							</View> */}
 							<View>
 								<TextInput
 									style={styles.input}
@@ -84,7 +73,7 @@ export default function LoginScreen({navigation}) {
 								>
 									<Text style={styles.btnTitle}>Зарегистрироваться</Text>
 								</TouchableOpacity>
-							<View>
+							<View style={{marginTop: 16, marginBottom: 45}}>
 								<Text style={styles.textForm} onPress={() => navigation.navigate("Registration")}>Нет аккаунта? Зарегистрироваться</Text>
 							</View>
 						</View>
@@ -100,6 +89,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: '#fff',
+    
 	},
 	image: {
 		flex: 1,
@@ -144,8 +134,8 @@ const styles = StyleSheet.create({
 		color: '#fff',
 	},
 	textForm: {
-		marginTop: 16,
+    fontSize: 16,
 		textAlign: 'center',
-		marginBottom: 45,
+    color: '#1B4371',
 	},
 });

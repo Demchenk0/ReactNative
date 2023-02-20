@@ -84,7 +84,7 @@ export default function RegisterScreen({navigation}) {
 								>
 									<Text style={styles.btnTitle}>Зарегистрироваться</Text>
 								</TouchableOpacity>
-							<View>
+							<View style={{marginTop: 16, marginBottom: 45}}>
 								<Text style={styles.textForm} onPress={() => navigation.navigate("Login")}>Уже есть аккаунт? Войти</Text>
 							</View>
 						</View>
@@ -144,8 +144,8 @@ const styles = StyleSheet.create({
 		color: '#fff',
 	},
 	textForm: {
-		marginTop: 16,
+		fontSize: 16,
 		textAlign: 'center',
-		marginBottom: 45,
+    color: '#1B4371',
 	},
 });
