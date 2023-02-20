@@ -21,7 +21,7 @@ const initialState = {
 	password: '',
 };
 
-export default function Registration() {
+export default function RegisterScreen() {
 	const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 	const [state, setState] = useState(initialState);
 
@@ -37,11 +37,11 @@ export default function Registration() {
 			<View style={styles.container}>
 				<ImageBackground
 					style={styles.image}
-					source={require('.././image/PhotoBG.jpg')}
+					source={require('../../assets/image/PhotoBG.jpg')}
 				>
 					<KeyboardAvoidingView behavior={Platform.OS === 'ios' && 'padding'}>
 						<View style={styles.form}>
-							<Text style={styles.registration}>Регистрация</Text>
+							<Text style={styles.text}>Регистрация</Text>
 							<View>
 								<TextInput
 									style={styles.input}
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
 		// width: 375,
 		// height: 812,
 	},
-	registration: {
+	text: {
 		marginVertical: 32,
 		textAlign: 'center',
 		fontSize: 30,
