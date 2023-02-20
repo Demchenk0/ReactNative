@@ -21,7 +21,7 @@ const initialState = {
 	password: '',
 };
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
 	const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 	const [state, setState] = useState(initialState);
 
@@ -77,9 +77,6 @@ export default function LoginScreen() {
 									}
 								/>
 							</View>
-
-							{/* <Button title="Зарегистрироваться" /> */}
-							<View>
 								<TouchableOpacity
 									activeOpacity={0.5}
 									style={styles.btn}
@@ -87,7 +84,8 @@ export default function LoginScreen() {
 								>
 									<Text style={styles.btnTitle}>Зарегистрироваться</Text>
 								</TouchableOpacity>
-								<Text style={styles.textForm}>Нет аккаунта? Зарегистрироваться</Text>
+							<View>
+								<Text style={styles.textForm} onPress={() => navigation.navigate("Registration")}>Нет аккаунта? Зарегистрироваться</Text>
 							</View>
 						</View>
 					</KeyboardAvoidingView>
