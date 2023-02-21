@@ -1,14 +1,10 @@
 import * as Font from 'expo-font';
 import React, { useState } from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import { NavigationContainer } from '@react-navigation/native';
-
-import LoginScreen from './Screens/auth/LoginScreen';
-import RegisterScreen from './Screens/auth/RegistrationScreen';
-
-const AuthStack = createNativeStackNavigator();
-
+import useRoute from './router';
 export default function App() {
+	const routing = useRoute({});
 	// const [fontsLoaded] = useFonts({
 	//   Roboto_400Regular,
 	//   Roboto_500Medium,
@@ -23,12 +19,5 @@ export default function App() {
 	// if (!fontsLoaded) {
 	//   return null;
 	// }
-	return (
-		<NavigationContainer>
-			<AuthStack.Navigator>
-				<AuthStack.Screen options={{headerShown: false}} name="Login" component={LoginScreen} />
-				<AuthStack.Screen options={{headerShown: false}} name="Registration" component={RegisterScreen} />
-			</AuthStack.Navigator>
-		</NavigationContainer>
-	);
+	return <NavigationContainer>{routing}</NavigationContainer>;
 }
