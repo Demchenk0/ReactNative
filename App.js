@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import useRoute from './router';
 export default function App() {
-	const routing = useRoute({});
+	const routing = useRoute();
 	// const [fontsLoaded] = useFonts({
 	//   Roboto_400Regular,
 	//   Roboto_500Medium,

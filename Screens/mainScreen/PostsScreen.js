@@ -1,20 +1,18 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { moduleName } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import  HomeScreen  from '../nestedScreens/HomeScreen';
+import MapScreen from './../nestedScreens/MapScreen';
+import CommentsScreen from './../nestedScreens/CommentsScreen';
+
+const NestedScreen = createNativeStackNavigator();
 
 export default function PostsScreen() {
 	return (
-		<View style={styles.container}>
-		 <Ionicons name="md-checkmark-circle" size={32} color="green" />
-			<Text>PostsScreen</Text>
-		</View>
+		<NestedScreen.Navigator>
+			<NestedScreen.Screen name="HomeScreen" component={HomeScreen} />
+			<NestedScreen.Screen name="CommentsScreen" component={CommentsScreen} />
+			<NestedScreen.Screen name="MapScreen" component={MapScreen} />
+		</NestedScreen.Navigator>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-});
