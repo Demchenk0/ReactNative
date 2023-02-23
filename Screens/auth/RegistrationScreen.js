@@ -65,7 +65,6 @@ export default function RegisterScreen({navigation}) {
 								/>
 							</View>
 							<View style={{ marginTop: 16 }}>
-								{/* <Text style={styles.inputText}> Password</Text> */}
 								<TextInput
 									style={styles.input}
 									onFocus={() => setIsShowKeyboard(true)}
