@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import PostsScreen from './mainScreen/PostsScreen';
 import ProfileScreen from './mainScreen/ProfileScreen';
