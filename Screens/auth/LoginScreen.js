@@ -95,9 +95,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		resizeMode: 'cover',
 		justifyContent: 'flex-end',
-		// alignItems: 'center',
-		// width: 375,
-		// height: 812,
 	},
 	text: {
 		marginVertical: 32,
@@ -118,9 +115,6 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 16,
 	},
 
-	// inputText: {
-	// 	color: '#FFF',
-	// },
 	btn: {
 		backgroundColor: '#FF6C00',
 		height: 51,

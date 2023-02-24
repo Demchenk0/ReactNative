@@ -63,23 +63,15 @@ export default function CreateScreen({ navigation }) {
 							style={styles.input}
 							onFocus={() => setIsShowKeyboard(true)}
 							placeholder="Название..."
-							// value={state.email}
-							// onChangeText={value =>
-							// 	setState(prevState => ({ ...prevState, email: value }))
-							// }
 						/>
 					</View>
 					<View style={{ marginTop: 16 }}>
-						{/* <Text style={styles.inputText}> Password</Text> */}
+						
 						<TextInput
 							style={styles.input}
 							onFocus={() => setIsShowKeyboard(true)}
 							placeholder="Местность..."
 							secureTextEntry={true}
-							// value={state.password}
-							// onChangeText={value =>
-							// 	setState(prevState => ({ ...prevState, password: value }))
-							// }
 						/>
 					</View>
 
