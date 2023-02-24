@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { Text, Image, View, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+	Text,
+	Image,
+	View,
+	StyleSheet,
+	TouchableOpacity,
+	TextInput,
+	KeyboardAvoidingView,
+	TouchableWithoutFeedback,
+	Keyboard,
+} from 'react-native';
 import { Camera } from 'expo-camera';
 import { Entypo } from '@expo/vector-icons';
 import * as Location from 'expo-location';
@@ -22,30 +32,63 @@ export default function CreateScreen({ navigation }) {
 		console.log('navigation', navigation);
 		navigation.navigate('DefaultScreen', { photo });
 	};
+	const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+	const keyboardHide = () => {
+		setIsShowKeyboard(false);
+		Keyboard.dismiss();
+	};
 
 	return (
-		<View style={styles.container}>
-			<Camera style={styles.camera} ref={setCamera}>
-				{photo && (
-					<View style={styles.photoContainer}>
-						<Image
-							source={{ uri: photo }}
-							style={{ height: 111, width: 111 }}
+		<TouchableWithoutFeedback onPress={keyboardHide}>
+			<View style={styles.container}>
+				<KeyboardAvoidingView behavior={Platform.OS === 'ios' && 'padding'}>
+					<Camera style={styles.camera} ref={setCamera}>
+						{photo && (
+							<View style={styles.photoContainer}>
+								<Image
+									source={{ uri: photo }}
+									style={{ height: 111, width: 111 }}
+								/>
+							</View>
+						)}
+						<TouchableOpacity onPress={takePhoto}>
+							<View style={styles.flip}>
+								<Entypo name="camera" size={24} color="#BDBDBD" />
+							</View>
+						</TouchableOpacity>
+					</Camera>
+
+					<View>
+						<TextInput
+							style={styles.input}
+							onFocus={() => setIsShowKeyboard(true)}
+							placeholder="Название..."
+							// value={state.email}
+							// onChangeText={value =>
+							// 	setState(prevState => ({ ...prevState, email: value }))
+							// }
 						/>
 					</View>
-				)}
-				<TouchableOpacity onPress={takePhoto}>
-					<View style={styles.flip}>
-						<Entypo name="camera" size={24} color="#BDBDBD" />
+					<View style={{ marginTop: 16 }}>
+						{/* <Text style={styles.inputText}> Password</Text> */}
+						<TextInput
+							style={styles.input}
+							onFocus={() => setIsShowKeyboard(true)}
+							placeholder="Местность..."
+							secureTextEntry={true}
+							// value={state.password}
+							// onChangeText={value =>
+							// 	setState(prevState => ({ ...prevState, password: value }))
+							// }
+						/>
 					</View>
-				</TouchableOpacity>
-			</Camera>
-			<View>
-				<TouchableOpacity style={styles.btnSend} onPress={sendPhoto}>
-					<Text style={styles.btnTitle}>Опубликовать</Text>
-				</TouchableOpacity>
+
+					<TouchableOpacity style={styles.btnSend} onPress={sendPhoto}>
+						<Text style={styles.btnTitle}>Опубликовать</Text>
+					</TouchableOpacity>
+				</KeyboardAvoidingView>
 			</View>
-		</View>
+		</TouchableWithoutFeedback>
 	);
 }
 
@@ -82,11 +125,18 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		marginTop: 10,
 	},
+	input: {
+		borderWidth: 1,
+		borderColor: '#f6f6f6',
+		height: 50,
+		borderRadius: 8,
+		color: '#fff',
+	},
 	btnSend: {
 		backgroundColor: '#FF6C00',
 		height: 51,
 		borderRadius: 100,
-		marginTop: 43,
+		marginTop: 32,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},

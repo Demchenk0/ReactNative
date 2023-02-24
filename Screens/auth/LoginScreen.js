@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
 	},
 	textForm: {
     fontSize: 16,
-		textAlign: 'center',
+	textAlign: 'center',
     color: '#1B4371',
 	},
 });
