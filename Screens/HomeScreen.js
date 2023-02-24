@@ -10,10 +10,23 @@ const MainTab = createBottomTabNavigator();
 
 export default function HomeScreen() {
 	return (
-		<MainTab.Navigator screenOptions={{ tabBarShowLabel: false }} initialRouteName='Posts'>
+		<MainTab.Navigator
+			screenOptions={{ tabBarShowLabel: false }}
+			initialRouteName="Posts"
+		>
 			<MainTab.Screen
 				options={{
 					title: 'Публикации',
+					headerRight: () => (
+						<View style={{ marginRight: 20 }}>
+							<Feather
+								name="log-out"
+								size={24}
+								color="black"
+								// onPress={logOut}
+							/>
+						</View>
+					),
 					tabBarIcon: ({ focused, color, size }) => (
 						<Feather name="grid" size={size} color={color} />
 					),

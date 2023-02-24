@@ -4,25 +4,24 @@ import { Camera } from 'expo-camera';
 import { Entypo } from '@expo/vector-icons';
 import * as Location from 'expo-location';
 
-export default function CreateScreen({navigation}) {
-  // const [location, setLocation] = useState(null);
+export default function CreateScreen({ navigation }) {
+	// const [location, setLocation] = useState(null);
 	const [camera, setCamera] = useState(null);
 	const [photo, setPhoto] = useState('');
 
 	const takePhoto = async () => {
 		const photo = await camera.takePictureAsync();
-    const location = await Location.getCurrentPositionAsync({});
-    console.log('latitude', location.coords.latitude);
-    console.log('longitude', location.coords.longitude);
+		// const location = await Location.getCurrentPositionAsync({});
+		// console.log('latitude', location.coords.latitude);
+		// console.log('longitude', location.coords.longitude);
 		setPhoto(photo.uri);
 		console.log('photo', photo);
 	};
 
-  const sendPhoto = () => {
-console.log('navigation', navigation);
-navigation.navigate("Posts", {photo})
-  }
-
+	const sendPhoto = () => {
+		console.log('navigation', navigation);
+		navigation.navigate('DefaultScreen', { photo });
+	};
 
 	return (
 		<View style={styles.container}>
@@ -42,10 +41,7 @@ navigation.navigate("Posts", {photo})
 				</TouchableOpacity>
 			</Camera>
 			<View>
-				<TouchableOpacity
-					style={styles.btnSend}
-					onPress={sendPhoto}
-				>
+				<TouchableOpacity style={styles.btnSend} onPress={sendPhoto}>
 					<Text style={styles.btnTitle}>Опубликовать</Text>
 				</TouchableOpacity>
 			</View>
@@ -83,8 +79,8 @@ const styles = StyleSheet.create({
 		left: 0,
 		borderWidth: 1,
 		borderColor: '#fff',
-    borderRadius: 10,
-    marginTop: 10,
+		borderRadius: 10,
+		marginTop: 10,
 	},
 	btnSend: {
 		backgroundColor: '#FF6C00',
