@@ -13,6 +13,8 @@ import {
 	Keyboard,
 	TouchableWithoutFeedback,
 } from 'react-native';
+import { useDispatch } from "react-redux";
+import { authSingInUser } from '../../redux/auth/authOperations';
 
 const loadAplication = {};
 const initialState = {
@@ -25,12 +27,24 @@ export default function LoginScreen({navigation}) {
 	const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 	const [state, setState] = useState(initialState);
 
-	const keyboardHide = () => {
+  const dispatch = useDispatch()
+
+	const handleSubmit = () => {
 		setIsShowKeyboard(false);
 		Keyboard.dismiss();
-		console.log(state);
+
+    dispatch(authSingInUser(state))
+
+		console.log('submit', state);
 		setState(initialState);
 	};
+
+  const keyboardHide = () => {
+    setIsShowKeyboard(false);
+		Keyboard.dismiss();
+  }
+
+  
 
 	return (
 		<TouchableWithoutFeedback onPress={keyboardHide}>
@@ -69,7 +83,7 @@ export default function LoginScreen({navigation}) {
 								<TouchableOpacity
 									activeOpacity={0.5}
 									style={styles.btn}
-									onPress={keyboardHide }
+									onPress={handleSubmit }
 								>
 									<Text style={styles.btnTitle}>Войти</Text>
 								</TouchableOpacity>
@@ -106,7 +120,7 @@ const styles = StyleSheet.create({
 		borderColor: '#f6f6f6',
 		height: 50,
 		borderRadius: 8,
-		color: '#fff',
+		color: '#000',
 	},
 	form: {
 		backgroundColor: '#fff',

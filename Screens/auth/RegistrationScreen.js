@@ -34,6 +34,7 @@ export default function RegisterScreen({navigation}) {
 		setIsShowKeyboard(false);
 		Keyboard.dismiss();
 		console.log(state);
+		
 		dispatch(authSingUpUser(state))
 		setState(initialState);
 	};
