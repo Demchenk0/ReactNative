@@ -13,10 +13,13 @@ import {
 	Keyboard,
 	TouchableWithoutFeedback,
 } from 'react-native';
+import { useDispatch } from 'react-redux';
+
+import {authSingUpUser} from '../../redux/auth/authOperations'
 
 const loadAplication = {};
 const initialState = {
-	login: '',
+	nickname: '',
 	email: '',
 	password: '',
 };
@@ -25,15 +28,18 @@ export default function RegisterScreen({navigation}) {
 	const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 	const [state, setState] = useState(initialState);
 
-	const keyboardHide = () => {
+	const dispatch = useDispatch()
+
+	const handleSubmit = () => {
 		setIsShowKeyboard(false);
 		Keyboard.dismiss();
 		console.log(state);
+		dispatch(authSingUpUser(state))
 		setState(initialState);
 	};
 
 	return (
-		<TouchableWithoutFeedback onPress={keyboardHide}>
+		<TouchableWithoutFeedback onPress={handleSubmit}>
 			<View style={styles.container}>
 				<ImageBackground
 					style={styles.image}
@@ -47,9 +53,9 @@ export default function RegisterScreen({navigation}) {
 									style={styles.input}
 									onFocus={() => setIsShowKeyboard(true)}
 									placeholder="Логин"
-									value={state.login}
+									value={state.nickname}
 									onChangeText={value =>
-										setState(prevState => ({ ...prevState, login: value }))
+										setState(prevState => ({ ...prevState, nickname: value }))
 									}
 								/>
 							</View>
@@ -79,7 +85,7 @@ export default function RegisterScreen({navigation}) {
 								<TouchableOpacity
 									activeOpacity={0.5}
 									style={styles.btn}
-									onPress={keyboardHide}
+									onPress={handleSubmit}
 								>
 									<Text style={styles.btnTitle}>Зарегистрироваться</Text>
 								</TouchableOpacity>
@@ -115,7 +121,7 @@ const styles = StyleSheet.create({
 		borderColor: '#f6f6f6',
 		height: 50,
 		borderRadius: 8,
-		color: '#fff',
+		color: '#000',
 	},
 	form: {
 		backgroundColor: '#fff',
