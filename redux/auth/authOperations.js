@@ -7,7 +7,7 @@ import {
 	signOut,
 } from 'firebase/auth';
 import { auth } from '../../firebase/config';
-//   import { updateUserProfile, authStateChange, authSignOut } from "./authReduser";
+  import { updateUserProfile, authStateChange, authSignOut } from "./authReducer";
 
 function authSingUpUser({ email, nickname, password }) {
 	return async (dispatch, setState) => {
@@ -19,6 +19,14 @@ function authSingUpUser({ email, nickname, password }) {
 			});
 
 			console.log('RegisterUser', user);
+
+      dispatch(
+        updateUserProfile({
+          userId: user.uid,
+          nikname: user.displayName,
+          email: user.email,
+        })
+      )
 		} catch (error) {
 			const errorCode = error.code;
 			const errorMessage = error.message;
