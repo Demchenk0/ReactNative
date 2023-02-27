@@ -47,13 +47,42 @@ function authSingInUser({ email, password }) {
 	};
 }
 
-// function authSingOutUser({ email, password }) {
-//     return async (dispatch, setState) => {}
-// }
+function authStateChangedUser() {
+  return async (dispatch, setState) => {
+    try {
+      await onAuthStateChanged(auth, (user) => {
+        if (user) {
+          dispatch(
+            updateUserProfile({
+              userId: user.uid,
+              nikname: user.displayName,
+              email: user.email,
+            })
+          );
+          dispatch(authStateChange(true));
+        }
+        return;
+      });
+    } catch (error) {
+      console.log(error.code, error.message);
+    }
+  };
+}
+
+function authSingOutUser() {
+  return async (dispatch, setState) => {
+    try {
+      await signOut(auth);
+      dispatch(authSignOut());
+    } catch (error) {
+      console.log(error.code, error.message);
+    }
+  };
+}
 
 export {
 	authSingUpUser,
 	authSingInUser,
-	// authSingOutUser,
-  // authStateChangedUser,
+	authSingOutUser,
+  authStateChangedUser,
 };

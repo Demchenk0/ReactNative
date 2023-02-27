@@ -1,11 +1,12 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Button } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import PostsScreen from './mainScreen/PostsScreen';
 import ProfileScreen from './mainScreen/ProfileScreen';
 import CreateScreen from './mainScreen/CreateScreen';
 // todo Icons
 import { Feather, AntDesign } from '@expo/vector-icons';
+import { authSingOutUser } from '../redux/auth/authOperations';
 const MainTab = createBottomTabNavigator();
 
 export default function HomeScreen() {
@@ -18,12 +19,12 @@ export default function HomeScreen() {
 				options={{
 					title: 'Публикации',
 					headerRight: () => (
-						<View style={{ marginRight: 20 }}>
+						<View >
 							<Feather
 								name="log-out"
 								size={24}
 								color="black"
-								// onPress={logOut}
+								onPress={authSingOutUser()}
 							/>
 						</View>
 					),
@@ -33,6 +34,7 @@ export default function HomeScreen() {
 				}}
 				name="Posts"
 				component={PostsScreen}
+				
 			/>
 			<MainTab.Screen
 				options={{
