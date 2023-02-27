@@ -6,12 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { authStateChangedUser } from "../redux/auth/authOperations";
 
 function Main () {
-    const { stateChange } = useSelector(state => state.auth);
-const [user, setUser] = useState(null);
-// const auth = getAuth();
+const { stateChange } = useSelector((state) => state.auth);
+
 const dispatch = useDispatch();
-// onAuthStateChanged(auth, user => {setUser(user)
-// });
+
 useEffect(() => {
     dispatch(authStateChangedUser());
 }, [])

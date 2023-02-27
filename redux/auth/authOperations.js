@@ -23,7 +23,7 @@ function authSingUpUser({ email, nickname, password }) {
       dispatch(
         updateUserProfile({
           userId: user.uid,
-          nikname: user.displayName,
+          nickname: user.displayName,
           email: user.email,
         })
       )
@@ -55,7 +55,7 @@ function authStateChangedUser() {
           dispatch(
             updateUserProfile({
               userId: user.uid,
-              nikname: user.displayName,
+              nickname: user.displayName,
               email: user.email,
             })
           );
